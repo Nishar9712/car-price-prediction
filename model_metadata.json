@@ -1,0 +1,126 @@
+{
+    "num_features": [
+        "Levy",
+        "Prod_Year",
+        "Car_Age",
+        "Engine_Volume",
+        "Mileage_km",
+        "Cylinders",
+        "Airbags",
+        "Turbo"
+    ],
+    "cat_features": [
+        "Manufacturer_Grouped",
+        "Category",
+        "Leather_Interior",
+        "Fuel_Type",
+        "Gear_Box_Type",
+        "Drive_Wheels",
+        "Doors",
+        "Wheel",
+        "Color"
+    ],
+    "manufacturers": [
+        "AUDI",
+        "BMW",
+        "CHEVROLET",
+        "DAEWOO",
+        "DODGE",
+        "FIAT",
+        "FORD",
+        "HONDA",
+        "HYUNDAI",
+        "JEEP",
+        "KIA",
+        "LEXUS",
+        "MAZDA",
+        "MERCEDES-BENZ",
+        "MINI",
+        "MITSUBISHI",
+        "NISSAN",
+        "OPEL",
+        "PORSCHE",
+        "SSANGYONG",
+        "SUBARU",
+        "SUZUKI",
+        "TOYOTA",
+        "VAZ",
+        "VOLKSWAGEN",
+        "Other"
+    ],
+    "categories": [
+        "Cabriolet",
+        "Coupe",
+        "Goods wagon",
+        "Hatchback",
+        "Jeep",
+        "Limousine",
+        "Microbus",
+        "Minivan",
+        "Pickup",
+        "Sedan",
+        "Universal"
+    ],
+    "fuel_types": [
+        "CNG",
+        "Diesel",
+        "Hybrid",
+        "LPG",
+        "Petrol",
+        "Plug-in Hybrid"
+    ],
+    "gear_box_types": [
+        "Automatic",
+        "Manual",
+        "Tiptronic",
+        "Variator"
+    ],
+    "drive_wheels": [
+        "4x4",
+        "Front",
+        "Rear"
+    ],
+    "doors": [
+        "2-3",
+        "4-5",
+        ">5"
+    ],
+    "wheels": [
+        "Left wheel",
+        "Right-hand drive"
+    ],
+    "colors": [
+        "Beige",
+        "Black",
+        "Blue",
+        "Brown",
+        "Carnelian red",
+        "Golden",
+        "Green",
+        "Grey",
+        "Orange",
+        "Pink",
+        "Purple",
+        "Red",
+        "Silver",
+        "Sky blue",
+        "White",
+        "Yellow"
+    ],
+    "leather_options": [
+        "Yes",
+        "No"
+    ],
+    "prod_year_min": 1943,
+    "prod_year_max": 2020,
+    "engine_volume_min": 0.0,
+    "engine_volume_max": 20.0,
+    "mileage_min": 0.0,
+    "mileage_max": 598779.0,
+    "best_model": {
+        "name": "Gradient Boosting",
+        "r2_score": 0.5879681927856852,
+        "mae": 6685.439607319178,
+        "rmse": 10783.977452262578
+    }
+}
