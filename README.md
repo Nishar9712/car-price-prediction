@@ -1,53 +1,63 @@
-
 # 🚗 Car Price Prediction, EDA & Streamlit Web App
 
-A complete end-to-end Machine Learning and Exploratory Data Analysis (EDA) project for used car price valuation, featuring comprehensive data cleaning, comparative benchmarking of 5 regression algorithms, and an intuitive Streamlit dashboard.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nishar9712-car-price-prediction-app-4mbowh.streamlit.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Nishar9712/car-price-prediction)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+
+> 🌐 **Live Web Application:** [Car Price Predictor on Streamlit Cloud](https://nishar9712-car-price-prediction-app-4mbowh.streamlit.app/)
+
+A complete end-to-end Machine Learning and Exploratory Data Analysis (EDA) project for used car price valuation, featuring comprehensive data cleaning, comparative benchmarking of 5 regression algorithms, and an intuitive, interactive Streamlit dashboard.
+
+---
+
+## 🔗 Live Demo
+
+You can try out the deployed application directly in your browser without any setup:
+👉 **[Launch Car Price Predictor](https://nishar9712-car-price-prediction-app-4mbowh.streamlit.app/)**
 
 ---
 
 ## 📁 Project Structure
 
-All project files are located directly in this folder:
-
 ```text
-Miniproject/
+car-price-prediction/
 │
-├── car_price.csv              # Original raw dataset
-├── car_price_cleaned.csv      # Cleaned and processed dataset
+├── data/
+│   ├── car_price.csv              # Original raw dataset
+│   ├── car_price_cleaned.csv      # Cleaned and processed dataset
+│   └── model_comparison.csv       # Comparison metrics table of all 5 algorithms
 │
-├── eda_and_cleaning.py        # Data cleaning & EDA generation script
-├── eda_and_cleaning.ipynb     # Jupyter Notebook: Data Cleaning & EDA
-├── train_models.py            # Model training & benchmarking script
-├── train_models.ipynb         # Jupyter Notebook: ML Model Benchmarking
-├── app.py                     # Streamlit web application
+├── notebooks/
+│   ├── eda_and_cleaning.ipynb     # Jupyter Notebook: Data Cleaning & EDA
+│   └── train_models.ipynb         # Jupyter Notebook: ML Model Benchmarking
 │
-├── best_model.pkl             # Trained pipeline of the best model (Gradient Boosting)
-├── model_metadata.json        # Model details and feature options
-├── model_comparison.csv       # Comparison metrics table of all 5 algorithms
-├── model_comparison.png       # Comparison bar chart (R² & MAE)
-│
-├── eda_plots/                 # Generated EDA charts
+├── images/                        # Generated EDA & Evaluation charts
 │   ├── price_distribution.png
 │   ├── top_manufacturers.png
 │   ├── category_median_price.png
 │   ├── price_vs_age.png
 │   ├── correlation_heatmap.png
-│   └── fuel_type_analysis.png
+│   ├── fuel_type_analysis.png
+│   └── model_comparison.png
 │
-├── requirements.txt           # Python dependencies
-└── README.md                  # Project documentation & guide
+├── app.py                         # Streamlit web application
+├── best_model.pkl                 # Trained pipeline of the best model (Gradient Boosting)
+├── model_metadata.json            # Model details, metrics, and feature options
+├── requirements.txt               # Python dependencies
+├── .gitignore                     # Git ignore rules
+└── README.md                      # Project documentation & guide
 ```
 
 ---
 
 ## 🧹 1. Data Cleaning Workflow
 
-The raw dataset (`car_price.csv`) had numerous real-world anomalies, formatting issues, and missing values. The cleaning pipeline (`eda_and_cleaning.py`) resolved:
+The raw dataset (`car_price.csv`) had numerous real-world anomalies, formatting issues, and missing values. The cleaning pipeline resolved:
 
 1. **Non-predictive Identifier:** Dropped the arbitrary `ID` column.
-2. **Duplicate Records:** Detected and removed 55 redundant entries.
+2. **Duplicate Records:** Detected and removed redundant entries.
 3. **Target Variable (`Price`) Cleaning:**
-   - Dropped 563 rows missing the target variable `Price`.
+   - Dropped records missing the target variable `Price`.
    - Filtered out extreme price anomalies: values below **$500** (dummy/scrap/symbolic $1 listings) and above **$150,000** (extreme luxury/unrealistic entries such as $26M).
 4. **Mileage Standardization:**
    - Stripped the `' km'` string suffix and converted to numeric float.
@@ -62,21 +72,21 @@ The raw dataset (`car_price.csv`) had numerous real-world anomalies, formatting 
    - **Categorical Features** (`Manufacturer`, `Model`, `Category`, `Fuel type`, `Gear box type`, `Drive wheels`, `Doors`, `Wheel`, `Color`): Imputed with the column mode.
 8. **Feature Engineering:**
    - `Car_Age`: Computed as $\text{Reference Year} - \text{Prod\_Year}$ to reflect vehicle depreciation directly.
-   - Standardized column names into snake/camel case for consistent downstream processing.
-9. **Export:** Cleaned dataset saved to `car_price_cleaned.csv` (16,872 valid records).
+   - Standardized column names for consistent downstream processing.
+9. **Export:** Cleaned dataset saved to `data/car_price_cleaned.csv` (16,872 valid records).
 
 ---
 
 ## 📊 2. Exploratory Data Analysis (EDA) Highlights
 
-Generated high-resolution visualization charts are saved in `eda_plots/`:
+Generated high-resolution visualization charts are saved in `images/`:
 
-- **Price Distribution (`price_distribution.png`):** Shows right-skewed car pricing with median price at \$13,172.
-- **Top Manufacturers (`top_manufacturers.png`):** Hyundai, Toyota, Mercedes-Benz, Ford, and Chevrolet lead the market share.
-- **Median Price by Category (`category_median_price.png`):** Jeeps, Coupes, and Sedans command high market valuations, while Goods Wagons and Hatchbacks remain budget-oriented.
-- **Depreciation Curve (`price_vs_age.png`):** Captures the steep initial depreciation over the first 5–8 years before flattening out for mature vehicles.
-- **Correlation Heatmap (`correlation_heatmap.png`):** Demonstrates strong negative correlation between car price and vehicle age/mileage, and positive correlation with engine volume and airbags.
-- **Fuel Type Analysis (`fuel_type_analysis.png`):** Petrol and Diesel dominate market share, while Plug-in Hybrids and Hybrids exhibit higher average resale prices.
+- **Price Distribution (`images/price_distribution.png`):** Shows right-skewed car pricing with median price at \$13,172.
+- **Top Manufacturers (`images/top_manufacturers.png`):** Hyundai, Toyota, Mercedes-Benz, Ford, and Chevrolet lead the market share.
+- **Median Price by Category (`images/category_median_price.png`):** Jeeps, Coupes, and Sedans command high market valuations, while Goods Wagons and Hatchbacks remain budget-oriented.
+- **Depreciation Curve (`images/price_vs_age.png`):** Captures the steep initial depreciation over the first 5–8 years before flattening out for mature vehicles.
+- **Correlation Heatmap (`images/correlation_heatmap.png`):** Demonstrates strong negative correlation between car price and vehicle age/mileage, and positive correlation with engine volume and airbags.
+- **Fuel Type Analysis (`images/fuel_type_analysis.png`):** Petrol and Diesel dominate market share, while Plug-in Hybrids and Hybrids exhibit higher average resale prices.
 
 ---
 
@@ -101,31 +111,28 @@ We trained and benchmarked **5 regression algorithms** on an 80% train / 20% tes
 
 ## 🌐 4. Streamlit Web Application
 
-The Streamlit web application (`app.py`) is streamlined specifically for **Car Price Prediction**:
+The interactive web application is deployed live and can also be run locally:
+- **Live URL:** [https://nishar9712-car-price-prediction-app-4mbowh.streamlit.app/](https://nishar9712-car-price-prediction-app-4mbowh.streamlit.app/)
 - **Vehicle Input Form:** Select car manufacturer, body category, production year, mileage, engine displacement, turbo option, fuel type, transmission, drive wheels, doors, airbags, and leather interior.
 - **Instant Valuation:** Computes the fair market price in real-time with an estimated valuation confidence range.
 - **Vehicle Summary Cards:** Displays key specs (calculated vehicle age, mileage, and vehicle class).
 
 ---
 
-## 🚀 5. How to Run
+## 🚀 5. How to Run Locally
 
-### Install Dependencies
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Nishar9712/car-price-prediction.git
+cd car-price-prediction
+```
+
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run Data Cleaning & EDA
-```bash
-python eda_and_cleaning.py
-```
-
-### Run Model Training & Evaluation
-```bash
-python train_models.py
-```
-
-### Launch the Streamlit Web Application
+### 3. Launch the Streamlit Web Application
 ```bash
 streamlit run app.py
 ```
